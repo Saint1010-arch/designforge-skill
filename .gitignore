@@ -1,0 +1,26 @@
+# deps / build
+node_modules/
+dist/
+.next/
+out/
+designforge-out/
+release/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# packaged offline bundle
+*.zip
+
+# logs / runtime junk
+*.log
+*.pid
+*.out
+sm.out
+t-out.log
+
+# OS
+.DS_Store
+Thumbs.db
