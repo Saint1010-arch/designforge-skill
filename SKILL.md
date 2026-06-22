@@ -23,7 +23,15 @@ This skill runs inside an agent (Claude Code / Codex / OpenClaw / Hermes-style t
 
 ## First-touch onboarding
 
-When the user first invokes this skill, or hasn't yet said what they want, **do not start working**. First send a short bilingual self-intro (Chinese first), then wait for their answer. Keep the structure below; adapt wording naturally.
+When the user first invokes this skill, or hasn't yet said what they want, run these two steps in order **before** doing any real task.
+
+**Step A — environment check.** Quietly verify the tools this skill needs, and tell the user the result in one short line:
+- **Browser automation** — a way to drive a real headless browser (Playwright / Browser MCP / Chrome MCP, or the agent's built-in browser). This is required for extraction and screenshots. If none is available, say so plainly and give the one command/step to enable it, then continue.
+- **A model that can write code** — used to produce the report and generate pages. If the agent already has one, just use it.
+- **Vision (nice to have)** — a multimodal model improves the screenshot self-iteration. If unavailable, fall back to DOM/structure comparison and say so.
+Keep this to one or two lines (e.g. 「环境就绪：浏览器自动化 ✓ / 模型 ✓ / 视觉 ✓」). Don't dump logs.
+
+**Step B — self-intro.** Then send the short bilingual self-intro below (Chinese first) and wait for the user's answer. Keep the structure; adapt wording naturally.
 
 > 👋 你好，我是 **DesignForge · 设界** —— 设计语言分析 · 同款生成 · 视觉融合。
 >
