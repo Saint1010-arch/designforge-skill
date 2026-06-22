@@ -1,8 +1,10 @@
 # DesignForge / 设界
 
-把"看一个好网页 → 说清它好在哪 → 复刻一个同款 / 融合几个方向 → 升级一份 HTML"这条重复劳动，做成一个**可被智能体加载的技能包**（Claude Code / Codex / OpenClaw 等通用）。也附带一个独立本地工具（命令行 + 本地网页界面，自带密钥）。
+一个开源的 **AI Skill**。你不用写代码，只要把一个网址（或一份 HTML 文件）丢给 AI，它就会用浏览器把页面看一遍、抽出真实的设计语言，然后给你想要的东西：一份**设计报告**、一段可复用的**同款提示词**、一个**同款页面**，或把几个参考**按权重融合**成一套新视觉。
 
-A skill package (loadable by agents like Claude Code / Codex / OpenClaw) that turns "look at a good page → explain why it works → recreate a same-style page → fuse directions → upgrade an HTML" into one repeatable tool. Ships with a standalone local app (CLI + local web UI, bring-your-own-key) too.
+An open-source **AI skill**. No coding. Hand your agent a URL (or an HTML file); it reads the page in a real browser, extracts the actual design language, and gives you a **design report**, a reusable **same-style prompt**, a **same-style page**, or a **weighted fusion** of several references.
+
+> 它做的是**同款风格**，不是 1:1 复制；而且**每次先给报告，再决定要不要建页面**。
 
 ---
 
@@ -17,40 +19,52 @@ A skill package (loadable by agents like Claude Code / Codex / OpenClaw) that tu
 
 需求多变是常态。与其每次从零手搓，不如把这套动作沉淀成一个工具，一次解决。这个项目就是这么来的——目标是**实用**。
 
-I'm an operations intern at a big-tech company. A few tasks kept recurring and eating time: fast, defensible reads of reference pages before reviews; lots of send-ready HTML reports/cases; aligning new work to a brand's design language from just a URL; and producing several fused directions for a manager to pick from. Requirements shift constantly, so I packaged the repeated steps into one tool.
+I'm an operations intern at a big-tech company. A few tasks kept recurring and eating time: fast, defensible reads of reference pages before reviews; lots of send-ready HTML reports/cases; aligning new work to a brand's design language from just a URL; and producing several fused directions for a manager to pick from. So I packaged the repeated steps into one tool.
 
 ---
 
-## 它能做什么 / What it does
+## 怎么用（用户视角）/ How to use
 
-1. **设计报告 / Design report** — 用真实无头浏览器抓全页截图（桌面 1440 / 移动 390）、配色、字体、栅格、间距、各区块布局，产出双语结构化报告（中文在上）+ 评分。
-2. **同款提示词 / Same-style prompt** — 把视觉语言编码成一段可贴进任意模型的提示词。最可复用的产物。
-3. **同款页面 / Same-style page** — 真正生成一个同款风格的原创页面（Next.js 工程或单文件 HTML），并做 2 轮"截图对比 → 修差距"的自我迭代。
-4. **按权重融合 / Weighted fusion** — 给两个或多个参考设比重，融合成一套新的、协调的视觉，再出报告 + 提示词 + 页面。
-5. **HTML 模式 / HTML mode** — 对链接或上传的 HTML 文件做分析、重做、升级；支持多文件对比与融合。
+### 第一步：让你的 AI 装上它
+把下面这段话粘给你的 agent（Claude Code / Codex / OpenClaw / Hermes 等）：
 
-> 原则：**先出报告，再决定要不要建页面**；做的是**同款风格**，不是 1:1 复制。还原度取决于模型质量和网络稳定性——这点不藏着。
+```
+帮我安装这个 skill：https://github.com/Saint1010-arch/designforge-skill
+先只安装、别开始干活。装好后确认浏览器自动化可用（Playwright / Browser / Chrome MCP 之类），
+然后问我：要分析、做同款、融合，还是处理一个 HTML 文件。
+```
+
+### 第二步：直接用大白话说你要什么
+不用记命令，按场景说就行（AI 会**先给报告**，再问你要不要继续生成）：
+
+- **分析一个网站** → "分析一下 klingai.com 的设计语言，先给我报告和同款提示词。"
+- **做一个同款页面** → "照 klingai.com 的风格做个同款页面，标题换成我的，主色改成青色。"
+- **按权重融合** → "把 A 和 B 融合，A 占 70%，先给融合报告，再做页面。"
+- **处理 HTML 文件** → "把我这份 HTML 报告升级成更专业的展示页。"（贴链接，或直接上传文件）
+
+### AI 会怎么走 / What the AI does
+```
+① 看页面    用真实无头浏览器打开、滚动到底，截桌面(1440)和移动(390)全页图
+② 抽取      读真实 computed 值：配色、字体、栅格列数、间距、各区块布局、资源
+③ 出报告    双语结构化报告（中文在上）+ 评分 + 可复用要点；并给同款提示词
+④ 生成      按需做同款页面 / 融合页面 / 升级后的单文件 HTML（你点头才做）
+⑤ 自我迭代  渲染自己的产物→截图→和原图比→修最大的视觉差距（默认 2 轮）
+```
 
 ---
 
-## 两种用法 / Two ways to use
+## 各平台怎么加载 / Per-platform setup
 
-**A. 作为智能体技能 / As an agent skill**
-把本仓库地址交给你的 agent（Claude Code / Codex / OpenClaw / Hermes 等），让它自己安装即可：
-```
-https://github.com/Saint1010-arch/designforge-skill
-```
-之后直接说要做什么（分析 / 做同款 / 融合 / HTML），它会按 `SKILL.md` 自动加载所需细则。
+最省事的办法是**第一步那段话直接丢给 AI 让它自己装**。如果你想手动放，对应目录如下：
 
-**B. 作为本地工具 / As a local app**
-不跑智能体也能用。进入 `app/`，自带命令行 + 本地网页界面，自带密钥：
-```bash
-cd app
-npm install
-npx playwright install chromium
-npm run dev            # 打开本地网页界面 / open the local web UI
-```
-详见 `app/README.md`。免安装的 Windows 离线整包（约 339MB）放在 Releases 里。
+| 平台 / Platform | 放哪儿 / Where | 怎么触发 / Trigger |
+|---|---|---|
+| **Claude Code** | `.claude/skills/designforge/`（放整个仓库） | 直接说"分析…/做同款…/融合…" |
+| **Codex** | `~/.codex/skills/designforge/` 或项目内 `.codex/skills/designforge/` | 同上，自然语言即可 |
+| **OpenClaw / Hermes 等** | 指向本仓库地址让它加载 | 同上 |
+| **其它支持 skill 的 agent** | 把仓库作为 skill 源加载，入口是 `SKILL.md` | 同上 |
+
+> 核心是 `SKILL.md` 这套方法论，平台无关。把它喂给任何能开浏览器、能调模型的 AI 都能用。
 
 ---
 
@@ -59,15 +73,21 @@ npm run dev            # 打开本地网页界面 / open the local web UI
 SKILL.md            技能入口（4 类产物、4 种模式、6 条原则、工作流）
 references/         需要时加载的细则（抽取 / 提示词 / 融合 / HTML / 验收）
 scenarios/          5 条真实工作打法（竞品 demo / HTML 报告 / 品牌对齐 / 融合 / 评审）
-app/                独立本地工具（CLI + 本地网页界面，BYOK）
 ```
 
 ---
 
+## 它能给你什么 / What you get
+1. **设计报告** — 双语结构化拆解（配色 / 字体 / 布局 / 动效）+ 评分 + 可复用要点。
+2. **同款提示词** — 把视觉语言编码成一段可贴进任意模型的提示词，最可复用。
+3. **同款页面** — 真正生成一个同款风格的原创页面，并做截图自我迭代。
+4. **按权重融合** — 多个参考按比重揉成一套新的、协调的视觉。
+5. **HTML 模式** — 对链接或上传的 HTML 做分析 / 重做 / 升级，支持多文件对比与融合。
+
 ## 技术要点 / Technical notes
-- **真实浏览器抽取**：Playwright 无头浏览器跑全页滚动、抓真实 computed 值（hex / px / 字体名 / 栅格列数 / 间距）和资源，而不是猜。
-- **自我迭代**：生成后渲染自己的产物、截图、和原图比对、修最大的视觉差距，默认 2 轮。
-- **容错**：BYOK 客户端处理 max_tokens 自动减半、JSON 修复、地域限制等错误的友好提示；支持视觉模型。
+- **真实浏览器抽取**：无头浏览器跑全页滚动、抓真实 computed 值（hex / px / 字体名 / 栅格列数 / 间距）和资源，而不是猜。
+- **报告优先**：先出报告再生成，避免"做完才发现方向不对"的返工。
+- **自我迭代**：生成后和原图比对、修差距，默认 2 轮。
 - **自包含产物**：生成的 React 只依赖 React（图标用内联 SVG/emoji），第三方依赖会自动写进工程。
 
 ## 诚实的边界 / Honest limitations

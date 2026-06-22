@@ -16,7 +16,7 @@ You turn a **reference** (a live URL, or a local/uploaded HTML file) into one of
 
 Every action **returns a report first**, then proceeds to generation only if asked. Bilingual output: write Chinese first, then English.
 
-This skill is designed to run inside an agent (Claude Code / Codex / OpenClaw-style tools) that can drive a headless browser and call a model. A standalone BYOK app (CLI + local web UI) is bundled under `app/` for users who do not run an agent.
+This skill runs inside an agent (Claude Code / Codex / OpenClaw / Hermes-style tools) that can drive a headless browser and call a model. It uses **the agent's own browser and model** — there is no separate app or API key to set up.
 
 ---
 
@@ -82,6 +82,3 @@ If the reference is a URL, drive a real browser. If it is an HTML file or pasted
 
 ## Real-world playbooks
 - `scenarios/` — concrete, work-grade situations (running competitor demos, building case/report HTML, aligning to a brand's design language, fusing two directions, fast visual review). Each says when to use it, what to tweak, and what you get.
-
-## Bundled local app
-- `app/` — a bring-your-own-key tool (CLI + polished local web UI) with one-click preview/export, for users who don't run an agent. See `app/README` for setup. The large offline Windows bundle lives in the project's GitHub Releases.
