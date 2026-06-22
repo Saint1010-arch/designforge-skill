@@ -8,7 +8,7 @@ You repeatedly need a fast, defensible read of a competitor or reference landing
 ## 怎么用 / How to use
 - 给一个 URL，进入 **Analyze 模式**。
 - 工具用真实无头浏览器抓全页截图（桌面 1440 / 移动 390）、配色、字体、栅格、间距、各区块布局。
-- 先返回**双语设计报告**（中文在上）：视觉语言、评分、可复用要点。
+- 先返回**设计报告**：视觉语言、评分、可复用要点（语言跟随你的对话）。
 
 CLI: `designforge analyze https://example.com`
 

@@ -1,6 +1,6 @@
 # Report fields + writing a great same-style prompt
 
-## The design report (bilingual: Chinese first, then English)
+## The design report
 Return these fields:
 - summary — 2–3 sentences on the overall design identity.
 - vibe — 3–6 short adjective tags (minimal, editorial, dark, playful, …).
