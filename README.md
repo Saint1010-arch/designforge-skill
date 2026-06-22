@@ -15,7 +15,7 @@ A skill package (loadable by agents like Claude Code / Codex / OpenClaw) that tu
 - 想让新页面"贴近某个品牌的设计语言"，但手上只有一个网址，没有设计规范。
 - 评审时常出现"A 的布局好、B 的配色好"，老板还想"多看几个版本再挑"。
 
-需求多变是常态。与其每次从零手搓，不如把这套动作沉淀成一个工具，一次解决。这个项目就是这么来的——目标是**实用**，不是炫技。
+需求多变是常态。与其每次从零手搓，不如把这套动作沉淀成一个工具，一次解决。这个项目就是这么来的——目标是**实用**。
 
 I'm an operations intern at a big-tech company. A few tasks kept recurring and eating time: fast, defensible reads of reference pages before reviews; lots of send-ready HTML reports/cases; aligning new work to a brand's design language from just a URL; and producing several fused directions for a manager to pick from. Requirements shift constantly, so I packaged the repeated steps into one tool.
 
@@ -36,7 +36,11 @@ I'm an operations intern at a big-tech company. A few tasks kept recurring and e
 ## 两种用法 / Two ways to use
 
 **A. 作为智能体技能 / As an agent skill**
-把本仓库作为技能加载（Claude Code / Codex / OpenClaw 等）。智能体读 `SKILL.md`，按需加载 `references/` 里的拆解、提示词、融合、HTML、验收规则，并参考 `scenarios/` 里的真实打法。
+把本仓库地址交给你的 agent（Claude Code / Codex / OpenClaw / Hermes 等），让它自己安装即可：
+```
+https://github.com/Saint1010-arch/designforge-skill
+```
+之后直接说要做什么（分析 / 做同款 / 融合 / HTML），它会按 `SKILL.md` 自动加载所需细则。
 
 **B. 作为本地工具 / As a local app**
 不跑智能体也能用。进入 `app/`，自带命令行 + 本地网页界面，自带密钥：
