@@ -30,8 +30,7 @@ I'm an operations intern at a big-tech company. A few tasks kept recurring and e
 
 ```
 帮我安装这个 skill：https://github.com/Saint1010-arch/designforge-skill
-先只安装、别开始干活。装好后确认浏览器自动化可用（Playwright / Browser / Chrome MCP 之类），
-然后问我：要分析、做同款、融合，还是处理一个 HTML 文件。
+然后按照skill的工作流开始自我介绍和环境配置。
 ```
 
 ### 第二步：让它自我介绍，再说你要什么
@@ -50,23 +49,6 @@ I'm an operations intern at a big-tech company. A few tasks kept recurring and e
 ④ 生成      按需做同款页面 / 融合页面 / 升级后的单文件 HTML（你点头才做）
 ⑤ 自我迭代  渲染自己的产物→截图→和原图比→修最大的视觉差距（默认 2 轮）
 ```
-
----
-
-## 各平台怎么加载 / Per-platform setup
-
-最省事的办法是**第一步那段话直接丢给 AI 让它自己装**。如果你想手动放，对应目录如下：
-
-| 平台 / Platform | 放哪儿 / Where | 怎么触发 / Trigger |
-|---|---|---|
-| **Claude Code** | `.claude/skills/designforge/`（放整个仓库） | 直接说"分析…/做同款…/融合…" |
-| **Codex** | `~/.codex/skills/designforge/` 或项目内 `.codex/skills/designforge/` | 同上，自然语言即可 |
-| **OpenClaw / Hermes 等** | 指向本仓库地址让它加载 | 同上 |
-| **其它支持 skill 的 agent** | 把仓库作为 skill 源加载，入口是 `SKILL.md` | 同上 |
-
-> 核心是 `SKILL.md` 这套方法论，平台无关。把它喂给任何能开浏览器、能调模型的 AI 都能用。
-
----
 
 ## 仓库结构 / Layout
 ```
