@@ -20,8 +20,6 @@ A recording of DesignForge cloning [klingai.com](https://klingai.com/).
 
 https://github.com/Saint1010-arch/designforge-skill/raw/main/demo/kling-clone-demo.mp4
 
-> 若页面里没有自动出现播放器，点这里下载：[`demo/kling-clone-demo.mp4`](demo/kling-clone-demo.mp4)
-
 ---
 
 ## 为什么做这个 / Why this exists
