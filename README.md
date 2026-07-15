@@ -8,6 +8,16 @@ An open-source **AI skill**. No coding. Hand your agent a URL (or an HTML file);
 
 ---
 
+## 演示 / Demo
+
+下面这段视频，是我最早用**原始 skill** 克隆 [klingai.com](https://klingai.com/) 的实录 —— DesignForge 就是在它的基础上扩展来的。
+
+This clip is my original clone of [klingai.com](https://klingai.com/) using the **original skill** that DesignForge is built on.
+
+👉 [`demo/kling-clone-demo.mkv`](demo/kling-clone-demo.mkv)（下载观看 / download to watch — `.mkv` 不能在 GitHub 页面内嵌播放）
+
+---
+
 ## 为什么做这个 / Why this exists
 
 我在一家大厂运营岗实习。日常里有几类活儿反复出现，又零散又费时间：
