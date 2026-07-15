@@ -10,9 +10,9 @@ An open-source **AI skill**. No coding. Hand your agent a URL (or an HTML file);
 
 ## 演示 / Demo
 
-下面这段视频，是我最早用**原始 skill** 克隆 [klingai.com](https://klingai.com/) 的实录 —— DesignForge 就是在它的基础上扩展来的。
+下面这段视频是 DesignForge 克隆 [klingai.com](https://klingai.com/) 的实录：从抓取页面、抽取设计语言，到生成同款页面的全过程。
 
-This clip is my original clone of [klingai.com](https://klingai.com/) using the **original skill** DesignForge is built on.
+A recording of DesignForge cloning [klingai.com](https://klingai.com/) — from capturing the page and extracting its design language to producing a same-style result.
 
 https://github.com/Saint1010-arch/designforge-skill/raw/main/demo/kling-clone-demo.mp4
 
